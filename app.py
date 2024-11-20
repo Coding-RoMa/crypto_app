@@ -35,4 +35,7 @@ st.subheader("Historical Prices")
 st.write(df)
 
 st.subheader("Data Statistics")
-st.write(df.describe)
+st.write(df.describe())
+
+st.subheader("Historical Price Chart - Adjusted Close Price")
+st.line_chart(df['Adj Close'])
