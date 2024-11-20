@@ -12,5 +12,6 @@ def get_input():
     start_date = st.sidebar.date_input("Start Date", "2021-01-01")
     end_date = st.sidebar.date_input("End Date", "2021-12-31")
 
-    return symbol, start_date, end_date
-    
+    return symbol, start_date, 
+
+symbol, start_date, end_date = get_input()
