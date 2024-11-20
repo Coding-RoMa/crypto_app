@@ -30,3 +30,6 @@ def get_data(symbol, start_date, end_date):
 # Unpack user inputs
 symbol, start_date, end_date = get_input()
 df = get_data(symbol, start_date, end_date)
+
+st.subheader("Historical Prices")
+st.write(df)
