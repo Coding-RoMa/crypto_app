@@ -35,4 +35,4 @@ st.subheader("Historical Prices")
 st.write(df)
 
 st.subheader("Data Statistics")
-st.write(df.describe)
+st.write(df.describe())
