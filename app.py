@@ -33,3 +33,6 @@ df = get_data(symbol, start_date, end_date)
 
 st.subheader("Historical Prices")
 st.write(df)
+
+st.subheader("Data Statistics")
+st.write(df.describe)
