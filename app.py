@@ -3,6 +3,8 @@ import yfinance as yf
 import streamlit as st
 import plotly.graph_objects as go
 from datetime import date  # Import the date class
+from patterns import patterns
+
 
 st.title("Market Dashboard Application")
 st.sidebar.header("User Input")
@@ -27,9 +29,14 @@ def get_data(symbol, start_date, end_date):
 
     return df
 
+def get_patterns():
+    patterns = st.sidebar.text_input("patterns")
+    return patterns
+
 # Unpack user inputs
 symbol, start_date, end_date = get_input()
 df = get_data(symbol, start_date, end_date)
+patterns = get_patterns()
 
 st.subheader("Historical Prices")
 st.write(df)
