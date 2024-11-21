@@ -30,13 +30,16 @@ def get_data(symbol, start_date, end_date):
     return df
 
 def get_patterns():
-    patterns = st.sidebar.text_input("patterns")
-    return patterns
+    # Allow users to select one or more patterns from the list
+    selected_patterns = st.sidebar.multiselect("Select Patterns", options=patterns)
+    return selected_patterns
 
 # Unpack user inputs
 symbol, start_date, end_date = get_input()
 df = get_data(symbol, start_date, end_date)
-patterns = get_patterns()
+
+# Get user-selected patterns
+selected_patterns = get_patterns()
 
 st.subheader("Historical Prices")
 st.write(df)
@@ -49,3 +52,7 @@ st.line_chart(df['Adj Close'])
 
 st.subheader("Volume")
 st.bar_chart(df['Volume'])
+
+# Display selected patterns in the main app area
+st.write("You selected the following patterns:")
+st.write(selected_patterns)
