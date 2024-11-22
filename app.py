@@ -4,6 +4,7 @@ import streamlit as st
 import plotly.graph_objects as go
 from datetime import date  # Import the date class
 from patterns import patterns
+import talib
 
 
 st.title("Market Dashboard Application")
@@ -72,8 +73,6 @@ st.write(selected_codes)
 #st.write("You selected the following patterns:")
 #st.write(selected_patterns)
 
-
-# Input field for any yfinance symbol
-selected_symbol = st.sidebar.text_input("Enter a Stock or Crypto Symbol", value="AAPL")
-
-st.write(f"You entered: {selected_symbol}")
+for symbol in df: 
+    try: 
+        result = talib.CODENGULFING(df['Open'])

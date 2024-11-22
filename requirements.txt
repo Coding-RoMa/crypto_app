@@ -2,3 +2,5 @@ pandas
 yfinance
 plotly
 streamlit
+TA-Lib
+plotly
