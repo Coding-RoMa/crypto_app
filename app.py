@@ -54,6 +54,12 @@ st.subheader("Volume")
 st.bar_chart(df['Volume'])
 
 
+#from where i got the patterns: 
+# https://github.com/TA-Lib/ta-lib-python/blob/master/docs/func_groups/pattern_recognition.md#cdl2crows---two-crows
+
+#here's another useful link: 
+# https://github.com/TA-Lib/ta-lib/blob/main/docs/functions.md
+
 # Reverse the dictionary to map readable names back to codes
 name_to_code = {v: k for k, v in patterns.items()}
 
@@ -65,3 +71,9 @@ st.write(selected_codes)
 # Display selected patterns in the main app area
 #st.write("You selected the following patterns:")
 #st.write(selected_patterns)
+
+
+# Input field for any yfinance symbol
+selected_symbol = st.sidebar.text_input("Enter a Stock or Crypto Symbol", value="AAPL")
+
+st.write(f"You entered: {selected_symbol}")
