@@ -73,6 +73,3 @@ st.write(selected_codes)
 #st.write("You selected the following patterns:")
 #st.write(selected_patterns)
 
-for symbol in df: 
-    try: 
-        result = talib.CODENGULFING(df['Open'])
