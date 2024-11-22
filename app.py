@@ -31,7 +31,7 @@ def get_data(symbol, start_date, end_date):
 
 def get_patterns():
     # Allow users to select one or more patterns from the list
-    selected_patterns = st.sidebar.multiselect("Select Patterns", options=patterns)
+    selected_patterns = st.sidebar.multiselect("Select Patterns", options=list(patterns.values())) # updating the current code - options=patterns)
     return selected_patterns
 
 # Unpack user inputs
@@ -53,6 +53,15 @@ st.line_chart(df['Adj Close'])
 st.subheader("Volume")
 st.bar_chart(df['Volume'])
 
+
+# Reverse the dictionary to map readable names back to codes
+name_to_code = {v: k for k, v in patterns.items()}
+
+# Convert selected patterns back to their corresponding codes
+selected_codes = [name_to_code[name] for name in selected_patterns]
+st.write("Corresponding Pattern Codes:")
+st.write(selected_codes)
+
 # Display selected patterns in the main app area
-st.write("You selected the following patterns:")
-st.write(selected_patterns)
+#st.write("You selected the following patterns:")
+#st.write(selected_patterns)
