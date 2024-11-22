@@ -72,8 +72,3 @@ st.write(selected_codes)
 #st.write("You selected the following patterns:")
 #st.write(selected_patterns)
 
-
-# Input field for any yfinance symbol
-selected_symbol = st.sidebar.text_input("Enter a Stock or Crypto Symbol", value="AAPL")
-
-st.write(f"You entered: {selected_symbol}")
