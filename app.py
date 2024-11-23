@@ -73,8 +73,3 @@ st.write(selected_codes)
 #st.write("You selected the following patterns:")
 #st.write(selected_patterns)
 
-import numpy as np
-
-prices = np.random.random(100)
-rsi = talib.RSI(prices)
-st.write("RSI:", rsi)

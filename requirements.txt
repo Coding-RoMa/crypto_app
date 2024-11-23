@@ -3,6 +3,5 @@ pandas
 yfinance
 plotly
 streamlit
-TA-Lib==0.5.1
+pandas-ta
 plotly
-TA_Lib-0.4.28-cp311-cp311-win_amd64.whl
