@@ -17,4 +17,10 @@ cd ta-lib-0.4.0
 make
 sudo make install
 
-echo "TA-Lib C library built successfully."
+# Confirm successful installation
+if [ -f "/usr/lib/libta_lib.so" ]; then
+    echo "TA-Lib C library installed successfully."
+else
+    echo "Error: TA-Lib C library installation failed."
+    exit 1
+fi

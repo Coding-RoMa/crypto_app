@@ -3,5 +3,5 @@ pandas
 yfinance
 plotly
 streamlit
-TA-Lib
+TA-Lib==0.4.0
 plotly
