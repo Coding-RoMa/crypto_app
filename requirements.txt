@@ -4,4 +4,5 @@ yfinance
 plotly
 streamlit
 pandas-ta
+setuptools
 plotly
