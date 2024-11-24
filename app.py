@@ -84,9 +84,15 @@ st.write(selected_codes)
 
 from ta.utils import dropna
 from ta.volatility import BollingerBands
+from ta import add_all_ta_features
+
 
 # Clean NaN values
 df = dropna(df)
+
+# Add ta features filling NaN values
+df = add_all_ta_features(
+    df, open="Open", high="High", low="Low", close="Close", volume="Volume_BTC", fillna=True)
 
 # Initialize Bollinger Bands Indicator
 indicator_bb = BollingerBands(close=df["Close"], window=20, window_dev=2)
