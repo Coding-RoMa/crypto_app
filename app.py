@@ -90,12 +90,19 @@ from ta import add_all_ta_features
 # Clean NaN values
 df = dropna(df)
 
+# Ensure all required columns are 1-dimensional and numeric
+for col in ['Open', 'High', 'Low', 'Close', 'Volume', 'Adj Close']:
+    if col in df.columns:
+        df[col] = df[col].values.flatten()
+        df[col] = pd.to_numeric(df[col], errors='coerce')
+
+# Fill NaN values to avoid issues
+df.fillna(0, inplace=True)
+
 # Add ta features filling NaN values
 df = add_all_ta_features(
-    df, open="Open", high="High", low="Low", close="Close", volume="Volume", fillna=True)
-
-for col in df.columns:
-    df[col] = df[col].values.flatten()
+    df, open="Open", high="High", low="Low", close="Close", volume="Volume", fillna=True
+)
 
 # Initialize Bollinger Bands Indicator
 indicator_bb = BollingerBands(close=df["Close"], window=20, window_dev=2)
