@@ -20,6 +20,7 @@ def get_data(symbol, start_date, end_date):
     symbol = symbol.upper()
     if symbol:
         df = yf.download(symbol, start=start_date, end=end_date)
+        df = df.dropna()  # Drop rows with missing values
     else:
         df = pd.DataFrame(columns=['Date', 'Close', 'Open', 'Volume', 'Adj Close'])
     return df
@@ -28,10 +29,10 @@ def get_data(symbol, start_date, end_date):
 symbol, start_date, end_date = get_input()
 df = get_data(symbol, start_date, end_date)
 
-# Calculate Bollinger Bands
-if not df.empty:
-    df = dropna(df)  # Clean NaN values
-    
+if not df.empty and 'Adj Close' in df.columns:
+    # Drop rows with missing values
+    df = dropna(df)
+
     # Initialize Bollinger Bands Indicator
     indicator_bb = BollingerBands(close=df["Adj Close"], window=20, window_dev=2)
 
@@ -61,6 +62,8 @@ if not df.empty:
     )
 
     st.plotly_chart(fig)
+else:
+    st.write("No valid data available for the selected date range or symbol.")
 
 st.subheader("Historical Prices")
 st.write(df)
