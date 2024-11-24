@@ -92,7 +92,7 @@ df = dropna(df)
 
 # Add ta features filling NaN values
 df = add_all_ta_features(
-    df, open="Open", high="High", low="Low", close="Close", volume="Volume_BTC", fillna=True)
+    df, open="Open", high="High", low="Low", close="Close", volume="Volume", fillna=True)
 
 # Initialize Bollinger Bands Indicator
 indicator_bb = BollingerBands(close=df["Close"], window=20, window_dev=2)
