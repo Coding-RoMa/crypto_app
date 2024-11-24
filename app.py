@@ -4,7 +4,7 @@ import streamlit as st
 import plotly.graph_objects as go
 from datetime import date  # Import the date class
 from patterns import patterns
-import pandas_ta as ta
+
 
 
 st.title("Market Dashboard Application")
