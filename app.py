@@ -87,22 +87,33 @@ from ta.volatility import BollingerBands
 from ta import add_all_ta_features
 
 
-# Clean NaN values
+# Clean NaN values (all columns)
 df = dropna(df)
 
-# Ensure all required columns are 1-dimensional and numeric
-for col in ['Open', 'High', 'Low', 'Close', 'Volume', 'Adj Close']:
-    if col in df.columns:
-        df[col] = df[col].values.flatten()
-        df[col] = pd.to_numeric(df[col], errors='coerce')
+# Dynamically identify numerical columns
+numerical_cols = df.select_dtypes(include=['number']).columns
 
-# Fill NaN values to avoid issues
-df.fillna(0, inplace=True)
+# Ensure all numerical columns are 1D
+for col in numerical_cols:
+    df[col] = df[col].squeeze()
 
-# Add ta features filling NaN values
+# Convert numerical columns to numeric explicitly (coerce errors to NaN)
+df[numerical_cols] = df[numerical_cols].apply(pd.to_numeric, errors='coerce')
+
+# Fill NaN values only in numerical columns
+df[numerical_cols] = df[numerical_cols].fillna(0)
+
+# Verify required columns exist for TA processing
+required_cols = ['Open', 'High', 'Low', 'Close', 'Volume']
+missing_cols = [col for col in required_cols if col not in df.columns]
+if missing_cols:
+    raise ValueError(f"Required columns are missing: {missing_cols}")
+
+# Add TA features
 df = add_all_ta_features(
     df, open="Open", high="High", low="Low", close="Close", volume="Volume", fillna=True
 )
+
 
 # Initialize Bollinger Bands Indicator
 indicator_bb = BollingerBands(close=df["Close"], window=20, window_dev=2)
