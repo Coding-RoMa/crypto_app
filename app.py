@@ -94,6 +94,9 @@ df = dropna(df)
 df = add_all_ta_features(
     df, open="Open", high="High", low="Low", close="Close", volume="Volume", fillna=True)
 
+for col in df.columns:
+    df[col] = df[col].values.flatten()
+
 # Initialize Bollinger Bands Indicator
 indicator_bb = BollingerBands(close=df["Close"], window=20, window_dev=2)
 
